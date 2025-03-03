@@ -1,2 +1,19 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+    const { data } = $props();
+        $inspect(data);
+    // $inspect(data);
+</script>
+
+
+<h1>Welcome</h1>
+
+{#if data.products.length > 0}
+        <ul>
+            {#each data.products as product}
+                <li>{product.Name}</li>
+                <li>{product.Description}</li>
+            {/each}
+        </ul>
+    {:else}
+        <p>No products found.</p>
+    {/if}

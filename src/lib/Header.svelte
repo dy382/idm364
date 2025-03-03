@@ -1,3 +1,5 @@
+
+
 <script>
     import { onMount } from "svelte";
     let cartItems = 0;
