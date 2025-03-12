@@ -1,15 +1,21 @@
 <script>
-    export let image = "";
-    export let title = "Product Title";
-    export let description = "This is a short product description.";
-  </script>
-  
-  <div class="card">
-    <img src={image} alt={title} class="card-img" />
-    <div class="card-content">
-      <h3 class="card-title">{title}</h3>
-      <p class="card-description">{description}</p>
-      <button class="card-button">Add to Cart</button>
-    </div>
+  export let Name;
+  export let Price;
+  export let Description;
+
+  export let ID; // Ensure this exists
+</script>
+
+<a href={`/drugs/${ID}`} class="block">
+  <div
+      class="max-w-sm cursor-pointer overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg"
+  >
+
+      <div class="p-6">
+          <h2 class="mb-2 text-xl font-semibold text-gray-800">{Name}</h2>
+          <p class="mb-2 text-gray-600">${Price}</p>
+          <p class="mb-4 text-gray-600">{Description}</p>
+      </div>
   </div>
+</a>
   
