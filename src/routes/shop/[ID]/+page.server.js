@@ -6,7 +6,7 @@ export async function load({ params }) {
     const { data: product, error } = await supabase
         .from('products')
         .select('*')
-        .eq('ID', params.ID)
+        .eq('ID', Number(params.ID))
         .single(); // Get the exact product
 
     if (error) {

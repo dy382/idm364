@@ -5,6 +5,7 @@
 </script>
 
 
+<div class ="page">
 <h1>Welcome</h1>
 
 {#if data.products.length > 0}
@@ -17,3 +18,6 @@
     {:else}
         <p>No products found.</p>
     {/if}
+
+  <h2>Best Sellers</h2>  
+</div>
