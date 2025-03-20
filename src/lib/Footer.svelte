@@ -11,8 +11,8 @@
     background-color: #A4485E;
     color: white;
     text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
+    padding: 3rem;
+    margin-top: 4rem;
     font-size: 0.9rem;
   }
   

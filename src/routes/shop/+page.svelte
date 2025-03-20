@@ -1,8 +1,25 @@
 <script>
     import Card from '$lib/Card.svelte';
     import { addToCart } from '$lib/cartStore.js';
+    import { tick } from 'svelte';
 
     export let data;
+
+
+        let clickedButton = {};
+
+async function handleAddToCart(product) {
+    addToCart(product);
+    
+    // Show "Added!" text on button
+    clickedButton[product.ID] = true;
+
+    // Wait a bit, then revert back
+    await tick(); 
+    setTimeout(() => {
+        clickedButton[product.ID] = false;
+    }, 1000);
+}
 </script>
 
 <svelte:head>
@@ -26,10 +43,13 @@
                     Amount={product.Amount}
                     Description={product.Description}
                     ID={product.ID}
-
                 />
 
-    <button on:click={() => addToCart(product)}>Add to Cart</button>
+    <button     
+      on:click={() => handleAddToCart(product)} 
+      class="{clickedButton[product.ID] ? 'clicked' : ''}">
+      {clickedButton[product.ID] ? "Added!" : "Add to Cart"}
+    </button>
             </div>
         {/each}
     </div>
@@ -118,8 +138,11 @@
   color: white
 }
 
-.product-card button:active {
-  background-color: green;
+.product-card button.clicked {
+  background-color: #A4485E;
+  color: white;
+  transform: scale(0.95);
+  transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
 }
 
 

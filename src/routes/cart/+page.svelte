@@ -1,5 +1,7 @@
 <script>
-    import { cart, removeFromCart, increaseQuantity, decreaseQuantity } from '$lib/cartStore.js';
+    import { cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart } from '$lib/cartStore.js';
+    import { goto } from "$app/navigation";
+
 
     let cartItems = [];
 
@@ -9,7 +11,11 @@
 
     function handleCheckout() {
         if (cartItems.length > 0) {
-            checkout();
+            sessionStorage.setItem("orderDetails", JSON.stringify(cartItems));
+
+            // clearCart();
+
+
             goto("/thank-you");
         }
     }
@@ -30,25 +36,33 @@
                     <h4>{item.Name}</h4>
                     <p>Price: ${item.Price} {item.Amount}</p>
                     <p>Quantity: {item.quantity}</p>
+                <div class="addsubtract">
                     <button on:click={() => decreaseQuantity(item.ID)}>-</button>
                     <button on:click={() => increaseQuantity(item.ID)}>+</button>
+                </div>
                     </div>
                 </div>
                 <button class="remove" on:click={() => removeFromCart(item.ID)}>Remove</button>
             </div>
         {/each}
 
+        <div class="totalcheckout">
         <h3>Total: ${totalPrice.toFixed(2)}</h3>
-        <button on:click={handleCheckout} class="checkout-btn">Checkout</button>
+        <button on:click={handleCheckout} class="checkout-btn" >Checkout</button>
+        </div>
     {:else}
         <p>Your cart is empty.</p>
     {/if}
 </div>
 
 <style>
+.cart-info{
+    margin: 0 5px;
+}
+
 
     .cart img {
-        width: 10rem;
+        max-width: 10rem;
         border-radius: 8px;
         margin: 10px;
     }
@@ -66,6 +80,8 @@
     .cart-product {
         display: flex;
     }
+
+
     button {
         margin: 5px;
         padding: 5px 10px;
@@ -75,9 +91,52 @@
         height: min-content;
     }
 
+.addsubtract {
+    background-color: white;
+  color: #A4485E;
+  border: 1.5px solid #A4485E;
+
+  font-size: 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  justify-content: space-between;
+  width: fit-content;
+}
+
+.addsubtract button {
+    text-decoration: none;
+    color: #A4485E;
+    background-color: white;
+}
+
+.checkout-btn {
+    background-color: white;
+  color: #A4485E;
+  border: 1.5px solid #A4485E;
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  width: fit-content;
+}
+
+.checkout-btn:hover {
+  background-color: #A4485E;
+  color: white
+}
+
+.totalcheckout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0;
+}
     .remove {
         background: red;
         color: white;
+        margin: 0 5px;
     }
 
     .remove:hover {

@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { writable, derived } from "svelte/store";
 
 export const cart = writable([]);
 
@@ -40,4 +40,25 @@ export function decreaseQuantity(ID) {
             return item;
         });
     });
+}
+
+// Derived store to count total cart quantity
+export const totalCartItems = derived(cart, $cart =>
+    $cart.reduce((total, item) => total + item.quantity, 0)
+);
+
+// Reset cart
+export function clearCart() {
+    cart.set([]);
+}
+
+
+function handleCheckout() {
+    if (cartItems.length > 0) {
+        sessionStorage.setItem("orderDetails", JSON.stringify(cartItems));
+
+        clearCart();
+
+        goto("/thank-you");
+    }
 }
