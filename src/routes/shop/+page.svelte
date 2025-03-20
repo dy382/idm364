@@ -11,7 +11,7 @@
 </svelte:head>
 
 <div class ="page">
-  <h1>Check out our latest  roducts</h1>
+  <h1>Check out our latest products</h1>
 <h2>Don't Miss Out!</h2>
 <p>Shop our exclusive collection today and enjoy amazing discounts.</p>
 
@@ -23,6 +23,7 @@
                     Images={product.Images}
                     Name={product.Name}
                     Price={product.Price}
+                    Amount={product.Amount}
                     Description={product.Description}
                     ID={product.ID}
 
@@ -113,11 +114,13 @@
 }
 
 .product-card button:hover {
-  background: #A4485E;
+  background-color: #A4485E;
   color: white
 }
 
-
+.product-card button:active {
+  background-color: green;
+}
 
 
 

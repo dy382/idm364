@@ -16,7 +16,6 @@
       <a href="/" class="hover:underline">Home</a>
       <a href="/shop" class="hover:underline">Shop</a>
       <a href="/about" class="hover:underline">About</a>
-      <a href="/contact" class="hover:underline">Contact</a>
     </nav>
     <div class="relative">
       <a href="/cart">

@@ -5,6 +5,7 @@
   export let Price;
   export let Description;
   export let Images;
+  export let Amount
 
   export let ID; // Ensure this exists
 </script>
@@ -15,7 +16,7 @@
       <div>
         <img src={Images}/>
           <h2>{Name}</h2>
-          <p>{Price}</p>
+          <p>${Price} {Amount}</p>
           <p>{Description}</p>
       </div>
 

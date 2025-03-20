@@ -26,7 +26,7 @@
   <img alt="The project image" src={product.Images}/>
     <div class="product-information">
       <h1>{product.Name}</h1>
-      <p>{product.Price}</p>
+      <p>${product.Price} {product.Amount}</p>
       <p>{product.Description}</p>
 
       <button on:click={() => addToCart(product)}>Add to Cart</button>
