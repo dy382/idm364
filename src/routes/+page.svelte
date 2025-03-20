@@ -1,7 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import Card from "$lib/Card.svelte";
-    import { goto } from "$app/navigation";
+
 
     export let data;
     let featuredProducts = [];
@@ -14,9 +14,15 @@
         }
     });
 
-    function shopNow() {
-        goto("/shop");
+    import { goto } from "$app/navigation";
+
+async function shopNow() {
+    try {
+        await goto("/shop");
+    } catch (error) {
+        console.error("Navigation error:", error);
     }
+}
 </script>
 
 <svelte:head>
@@ -33,7 +39,7 @@
     </section>
 
     <section class="featured">
-        <h2>🌟 Featured Products</h2>
+        <h2>Featured Products</h2>
         {#if featuredProducts.length > 0}
             <div class="featured-grid">
                 {#each featuredProducts as product}

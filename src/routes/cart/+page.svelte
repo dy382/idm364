@@ -142,4 +142,40 @@
     .remove:hover {
         background: darkred;
     } 
+
+    @media (max-width: 600px) {
+    .cart-item {
+        flex-direction: column;
+
+
+    }
+
+    .cart-product {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cart-product img {
+        width: 10rem; 
+    }
+
+    .cart-info {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        justify-content: center;
+
+    }
+
+    .addsubtract {
+        justify-content: center;
+    }
+
+    .remove {
+        align-self: center;
+    }
+}
 </style>
